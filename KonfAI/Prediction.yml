@@ -1,0 +1,52 @@
+Predictor:
+  Model:
+    classpath: UNetpp:UNetpp
+    UNetpp:
+      outputs_criterions: None
+      nb_channel: 1
+  Dataset:
+    groups_src:
+      IMAGE:
+        groups_dest:
+          IMAGE:
+            transforms:
+              TensorCast:
+                dtype: float32
+                inverse: true
+            patch_transforms: None
+            is_input: true
+    augmentations:
+      DataAugmentation_0:
+        data_augmentations:
+          Flip:
+            f_prob: [1, 1]
+            prob: 1
+        nb: 3
+    Patch:
+      patch_size: [512, 512]
+      overlap: None
+      pad_value: -1
+      extend_slice: 0
+    subset: None
+    dataset_filenames:
+      - ./Dataset:a:mha
+    batch_size: 32
+  outputs_dataset:
+    model:
+      OutputDataset:
+        name_class: OutputDataset
+        before_reduction_transforms: None
+        after_reduction_transforms: None
+        final_transforms: None
+        dataset_filename: Output:mha
+        group: sMR
+        same_as_group: IMAGE:IMAGE
+        patch_combine: None
+        reduction: Mean
+        Mean: {}
+  combine: Mean
+  train_name: Out
+  manual_seed: None
+  gpu_checkpoints: None
+  autocast: false
+  data_log: None

@@ -1,0 +1,6 @@
+CV_*.pt
+Dataset/
+Predictions/
+output/
+*.tar.gz
+__pycache__/
